@@ -12,27 +12,43 @@
 					<h3 class="text-xl font-bold text-gray-900">
 						{{ product.title }}
 					</h3>
+					<div class="flex items-center justify-between">
+						<div class="">
+							<h3 class="mb-4 font-medium text-gray-900">Price</h3>
+
+							<h3 class="mb-4 text-3xl font-bold text-yellow-500">
+								{{ product.price }}
+							</h3>
+						</div>
+					</div>
 					<div>
 						<h3 class="mb-4 font-medium text-gray-900">Description</h3>
 						<p class="text-base text-gray-600">
 							{{ product.description }}
 						</p>
 					</div>
+
 					<div class="flex items-center justify-between">
-<div class="">
-	<h3 class="mb-4 font-medium text-gray-900">Price</h3>
+						<div class="">
+							<h3 class="mb-4 font-medium text-gray-900">Category</h3>
+							<p class="text-base text-gray-600">
+								{{ product.category }}
+							</p>
+						</div>
 
-						<h3 class="mb-4 text-3xl font-bold text-gray-900">{{ product.price }}</h3>
-</div>
+						<div class="flex items-center justify-between">
 
-						<div>
-						<h3 class="mb-4 font-medium text-gray-900">Category</h3>
-						<p class="text-base text-gray-600">
-							{{ product.category }}
-							{{ product.rating.count }}
-							{{ product.rating.rate }}
+						<star-rating
+							:star-size="20"
+							:read-only="true"
+							v-model:rating="product.rating.rate"
+						></star-rating>
+
+						<p class="ml-10 text-base text-purple-500">
+							{{ product.rating.count }} Reviews
 						</p>
 						</div>
+
 					</div>
 				</div>
 			</div>
@@ -41,6 +57,7 @@
 </template>
 
 <script lang="ts">
+	import StarRating from 'vue-star-rating'
 	import { defineComponent, reactive, ref, toRefs } from 'vue'
 	import { useRoute } from 'vue-router'
 	import { getProduct } from '../apis/product'
@@ -53,6 +70,9 @@
 				type: Number,
 				default: 0,
 			},
+		},
+		components: {
+			StarRating,
 		},
 		setup(props) {
 			const isLoading = ref(false)
