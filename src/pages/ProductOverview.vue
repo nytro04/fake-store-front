@@ -7,6 +7,7 @@
 
       <div class="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
 				<div class="" v-for="product in products" :key="product.id">
+        <!-- <router-link :to="`/products/${product.id}`"   class="group"> -->
         <router-link :to="{name: 'ProductDetails', params: {id: product.id}}"   class="group">
           <div class="w-full overflow-hidden bg-gray-200 rounded-lg aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
             <img :src="product.image" :alt="product.title" class="object-cover object-center w-full h-full group-hover:opacity-75" />
@@ -30,7 +31,8 @@
 	import { getProducts } from '../apis/product'
 
 	export default defineComponent({
-		name: 'ProductOverview',
+    name: 'ProductOverview',
+
 		setup() {
 			const isLoading = ref(false)
 

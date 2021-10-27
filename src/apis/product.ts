@@ -20,3 +20,10 @@ export const getProducts = async (): Promise<ProductType[]> => {
 		return []
 	}
 }
+export const getProduct = async (
+	id: string | string[],
+): Promise<ProductType> => {
+	const { data } = await axiosInstance.get<ProductType>(`/products/${id}`)
+
+	return data
+}

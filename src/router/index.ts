@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import ProductOverview from '../pages/ProductOverview.vue'
+import ProductDetails from '../pages/ProductDetails.vue'
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -8,11 +9,16 @@ const routes: Array<RouteRecordRaw> = [
 		component: ProductOverview,
 	},
 	{
-		path: '/product/:id',
+		path: '/products/:id',
 		name: 'ProductDetails',
-		component: () =>
-			import(/* webpackChunkName: "about" */ '../pages/ProductDetails.vue'),
+		props: (route) => {
+			id: route.params.id
+		},
+		component: ProductDetails,
 	},
+	// 	component: () =>
+	// 		import(/* webpackChunkName: "details" */ '../pages/ProductDetails.vue'),
+	// },
 ]
 
 const router = createRouter({
