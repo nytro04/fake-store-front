@@ -1,6 +1,9 @@
 <template>
 	<div class="max-w-2xl mx-auto mt-6 bg-white sm:px-6 lg:max-w-7xl lg:px-8">
 		<div class="pt-20">
+			<div class="mb-5">
+			<router-link class="text-blue-500" to="/">Home</router-link>
+			</div>
 			<h2 class="mb-20 text-2xl font-extrabold tracking-tight text-gray-900">
 				Products Details
 			</h2>
